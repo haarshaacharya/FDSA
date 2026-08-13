@@ -1,21 +1,51 @@
-class LinearSearchint{
-    public static void main(String args[]){
-      
-        int arr[]={5,6,7,3,9,10,13};
+package Prac2;
 
-        int x=10;
+import java.util.Scanner;
 
-        int i;
-        for( i=0; i<arr.length;i++){
-            if(arr[i]==x)
-            {
-                System.out.println("Element at "+i+" int list ");
+public class LinearSearchint {
+
+    static int recursiveSearch(int arr[], int x, int index) {
+
+        if (index == arr.length)
+            return -1;
+
+        if (arr[index] == x)
+            return index + 1;
+
+        return recursiveSearch(arr, x, index + 1);
+    }
+
+    public static void main(String args[]) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of books: ");
+        int n = sc.nextInt();
+
+        int arr[] = new int[n];
+
+        System.out.print("Enter sorted book codes: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter book code to search: ");
+        int x = sc.nextInt();
+
+        int loopPosition = -1;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == x) {
+                loopPosition = i + 1;
                 break;
             }
         }
-         if(i== arr.length)
-            {
-                 System.out.println("Element not found ");
-            }
+
+        int recursivePosition = recursiveSearch(arr, x, 0);
+
+        System.out.println("Loop method position: " + loopPosition);
+        System.out.println("Recursive method position: " + recursivePosition);
+
+        sc.close();
     }
 }
